@@ -1,0 +1,1 @@
+{"id":"bf41adf2-236b-48ee-82ae-39d6c22d2fc1","space":33236,"runtime":"python3.9","name":"ml","path":"rt9q97","project":"b0136v8f","account":"144798365827","region":"us-east-1","deps":["fastapi==0.85.1","joblib","sklearn"],"envs":null,"public":true,"log_level":"off","cron":""}
