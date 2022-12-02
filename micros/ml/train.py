@@ -13,7 +13,8 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.30, random
 model = LinearRegression().fit(X_train, y_train)
 predictions = model.predict(X_test)
 
-print(predictions[:2])
+print(X_test[0])
+print(predictions[0])
 
 dump(model, 'model.joblib') 
 
