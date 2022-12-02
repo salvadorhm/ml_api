@@ -16,22 +16,28 @@ class Features(BaseModel):
     atemp: float
     hum: float
     windspeed: float
-"""
-{
-    "season": 1,
-    "mnth": 0,
-    "holiday": 0,
-    "weekday": 1,
-    "workingday": 6,
-    "weathersit": 0,
-    "temp": 0.344167,
-    "atemp": 0.363625,
-    "hum": 0.805833,
-    "windspeed": 0.160446
-}
-"""
+
+    class Config:
+        schema_extra = {
+            "example": {
+                "season": 1,
+                "mnth": 1,
+                "holiday": 0,
+                "weekday": 6,
+                "workingday": 0,
+                "weathersit": 2,
+                "temp": 0.344167,
+                "atemp": 0.363625,
+                "hum": 0.805833,
+                "windspeed": 0.160446
+            }
+        }
+
 class Label(BaseModel):
     rentals: float
+
+class Message(BaseModel):
+    message: float
 
 description = """# RENTALS API
 
@@ -90,16 +96,13 @@ async def get_rentals(features:Features):
             features.hum,
             features.windspeed
         ]
-        print(data)
-        predictions = model.predict([[data]])
-        print(predictions[0])
-        print(type(predictions[0]))
+        predictions = model.predict([data])
         response = {"rentals": predictions[0]}
         return response
     except Exception as e:
         response = JSONResponse(
                     status_code=400,
-                    content={"mensaje":f"{e.args}"},
+                    content={"message":f"{e.args}"},
                 )
         return response
 
